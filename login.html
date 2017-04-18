@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Web Water Cake</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+        crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+    <style>
+        body {
+            padding-top: 90px;
+        }
+        
+        .panel-login {
+            border-color: #ccc;
+            -webkit-box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.2);
+            -moz-box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.2);
+            box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.2);
+        }
+        
+        .panel-login>.panel-heading {
+            color: #00415d;
+            background-color: #fff;
+            border-color: #fff;
+            text-align: center;
+        }
+        
+        .panel-login>.panel-heading a {
+            text-decoration: none;
+            color: #666;
+            font-weight: bold;
+            font-size: 15px;
+            -webkit-transition: all 0.1s linear;
+            -moz-transition: all 0.1s linear;
+            transition: all 0.1s linear;
+        }
+        
+        .panel-login>.panel-heading a.active {
+            color: #029f5b;
+            font-size: 18px;
+        }
+        
+        .panel-login>.panel-heading hr {
+            margin-top: 10px;
+            margin-bottom: 0px;
+            clear: both;
+            border: 0;
+            height: 1px;
+            background-image: -webkit-linear-gradient(left, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0));
+            background-image: -moz-linear-gradient(left, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0));
+            background-image: -ms-linear-gradient(left, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0));
+            background-image: -o-linear-gradient(left, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0));
+        }
+        
+        .panel-login input[type="text"],
+        .panel-login input[type="email"],
+        .panel-login input[type="password"] {
+            height: 45px;
+            border: 1px solid #ddd;
+            font-size: 16px;
+            -webkit-transition: all 0.1s linear;
+            -moz-transition: all 0.1s linear;
+            transition: all 0.1s linear;
+        }
+        
+        .panel-login input:hover,
+        .panel-login input:focus {
+            outline: none;
+            -webkit-box-shadow: none;
+            -moz-box-shadow: none;
+            box-shadow: none;
+            border-color: #ccc;
+        }
+        
+        .btn-login {
+            background-color: #59B2E0;
+            outline: none;
+            color: #fff;
+            font-size: 14px;
+            height: auto;
+            font-weight: normal;
+            padding: 14px 0;
+            text-transform: uppercase;
+            border-color: #59B2E6;
+        }
+        
+        .btn-login:hover,
+        .btn-login:focus {
+            color: #fff;
+            background-color: #53A3CD;
+            border-color: #53A3CD;
+        }
+        
+        .forgot-password {
+            text-decoration: underline;
+            color: #888;
+        }
+        
+        .forgot-password:hover,
+        .forgot-password:focus {
+            text-decoration: underline;
+            color: #666;
+        }
+        
+        .btn-register {
+            background-color: #1CB94E;
+            outline: none;
+            color: #fff;
+            font-size: 14px;
+            height: auto;
+            font-weight: normal;
+            padding: 14px 0;
+            text-transform: uppercase;
+            border-color: #1CB94A;
+        }
+        
+        .btn-register:hover,
+        .btn-register:focus {
+            color: #fff;
+            background-color: #1CA347;
+            border-color: #1CA347;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+</head>
+
+<body>
+    <h1 align="center" style="color:#59B2E0;">WaterCake</h1>
+    </br>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <div class="panel panel-login">
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <a href="#" class="active" id="login-form-link">Login</a>
+                            </div>
+                            <div class="col-xs-6">
+                                <a href="#" id="register-form-link">Register</a>
+                            </div>
+                        </div>
+                        <hr>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-lg-12">
+
+                                <form id="login-form" action="maps.html" method="post" role="form" style="display: block;">
+                                    <div class="form-group">
+                                        <input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="">
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Password">
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-sm-6 col-sm-offset-3">
+                                                <input type="submit" name="login-submit" id="login-submit" tabindex="3" class="form-control btn btn-login" value="Log In">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+
+                                <form id="register-form" action="maps.html" method="post" role="form" style="display: none;">
+                                    <div class="form-group">
+                                        <input type="text" name="title" id="title" tabindex="1" class="form-control" placeholder="Title" value="">
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" name="username" id="regusername" tabindex="2" class="form-control" placeholder="Username" value="">
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="email" name="email" id="email" tabindex="3" class="form-control" placeholder="Email Address" value="">
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="password" name="password" id="regpassword" tabindex="4" class="form-control" placeholder="Password">
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="password" name="confirmpassword" id="confirm-password" tabindex="5" class="form-control" placeholder="Confirm Password">
+                                    </div>
+                                    <div class="form-group">
+                                        <!--<input type="text" name="usertype" id="usertype" tabindex="6" class="form-control" placeholder="User Type" value="">-->
+                                        <select name="usertype" id="usertype" tabindex="6" class="form-control">
+                                            <option value="CONTRIBUTOR">Contributor</option>
+                                            <option value="WORKER">Worker</option>
+                                            <option value="MANAGER">Manager</option>
+                                            <option value="ADMINISTRATOR">Administrator</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" name="city" id="city" tabindex="7" class="form-control" placeholder="City" value="">
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-sm-6 col-sm-offset-3">
+                                                <input type="submit" name="register-submit" id="register-submit" tabindex="8" class="form-control btn btn-register" value="Register Now">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        $(function () {
+
+            $('#login-form-link').click(function (e) {
+                $("#login-form").delay(100).fadeIn(100);
+                $("#register-form").fadeOut(100);
+                $('#register-form-link').removeClass('active');
+                $(this).addClass('active');
+                e.preventDefault();
+            });
+            $('#register-form-link').click(function (e) {
+                $("#register-form").delay(100).fadeIn(100);
+                $("#login-form").fadeOut(100);
+                $('#login-form-link').removeClass('active');
+                $(this).addClass('active');
+                e.preventDefault();
+            });
+
+        });
+
+        $(document).ready(function () {
+            $('#login-form').on('submit', function (e) {
+                var valid = false;
+                if (!valid) {
+                    e.preventDefault();
+                }
+                var $form = $(e.target),
+                    fv = $(e.target).data('formValidation');
+                // Do whatever you want here ...
+
+                // Then submit the form as usual
+                // if (false)
+                //     $('#login-form').unbind('submit').submit();
+                var credentials =
+                    {
+                        "username": $("#username").val(),
+                        "password": $("#password").val()
+                    };
+                // alert(JSON.stringify(credentials));
+
+                $.ajax({
+                    url: "http://localhost:8080/login",
+                    type: "POST",
+                    contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify(credentials), //Stringified Json Object
+                    async: false,    //Cross-domain requests and dataType: "jsonp" requests do not support synchronous operation
+                    cache: false,    //This will force requested pages not to be cached by the browser          
+                    processData: false, //To avoid making query String instead of JSON
+                    success: function (data, textStatus, xhr) {
+                        if (xhr.status === 204) {
+                            $('#login-form').unbind('submit').submit();
+                        }
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        if (jqXHR.status === 401) {
+                            alert("Wrong password!");
+                        } else if (jqXHR.status === 404) {
+                            alert("Username not found!");
+                        } else {
+                            alert(textStatus);
+                        }
+                    }
+                });
+            });
+        });
+
+        ///////////////////////////////////////////////////
+
+        $(document).ready(function () {
+            $('#register-form').on('submit', function (e) {
+                var valid = false;
+                if (!valid) {
+                    e.preventDefault();
+                }
+                var $form = $(e.target),
+                    fv = $(e.target).data('formValidation');
+                // Do whatever you want here ...
+
+                // Then submit the form as usual
+                // if (false)
+                //     $('#login-form').unbind('submit').submit();
+
+                var newUser =
+                    {
+                        "username": $("#regusername").val(),
+                        "password": $("#regpassword").val(),
+                        "email": $("#email").val(),
+                        "title": $("#title").val(),
+                        "city": $("#city").val(),
+                        "userType": $("#usertype").val().toUpperCase()
+                    };
+                alert(JSON.stringify(newUser));
+                $.ajax({
+                    url: "http://localhost:8080/accounts/",
+                    type: "POST",
+                    contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify(newUser), //Stringified Json Object
+                    async: false,    //Cross-domain requests and dataType: "jsonp" requests do not support synchronous operation
+                    cache: false,    //This will force requested pages not to be cached by the browser          
+                    processData: false, //To avoid making query String instead of JSON
+                    success: function (data, textStatus, xhr) {
+                        alert(xhr.status);
+                        if (xhr.status === 201) {
+                            $('#register-form').unbind('submit').submit();
+                        }
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        if (jqXHR.status === 400) {
+                            alert("Username taken!");
+                        }
+                    }
+                });
+            });
+        });
+
+        function validateFormOnSubmit(theForm) {
+
+            var credentials =
+                {
+                    "username": theForm.username.value,
+                    "password": theForm.password.value
+                };
+            alert(JSON.stringify(credentials));
+            $.ajax({
+                url: "http://localhost:8080/login",
+                type: "POST",
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify(credentials), //Stringified Json Object
+                async: false,    //Cross-domain requests and dataType: "jsonp" requests do not support synchronous operation
+                cache: false,    //This will force requested pages not to be cached by the browser          
+                processData: false, //To avoid making query String instead of JSON
+                success: function (data, textStatus, xhr) {
+                    alert(xhr.status);
+
+                    if (xhr.status === 204) {
+                        return true;
+                    } else if (xhr.status === 401) {
+                        alert("Wrong password!");
+                        return false;
+                    } else if (xhr.status === 401) {
+                        alert("Username not found!");
+                        return false;
+                    } else {
+                        alert(textStatus);
+                        return false;
+                    }
+                }
+            });
+            // var url = 'http://localhost:8080/login';
+            // var data = {
+            //     username: theForm.username.value,
+            //     password: theForm.password.value
+            // };
+            // $.getJSON(url, data, function (data, status, xhr) {
+            //     alert(xhr.status);
+            //     if (xhr.status == 204) {
+            //         alert(theForm.username.value);
+            //         //window.location.replace("maps.html");
+            //     } else if (xhr.status == 404) {
+            //         alert("Username Not Found");
+            //     }
+            // });
+
+
+
+
+            //alert(theForm.username.value);
+
+            // var reason = "";
+            // reason += validateName(theForm.name);
+            // reason += validatePhone(theForm.phone);
+            // reason += validateEmail(theForm.emaile);
+
+            // if (reason != "") {
+            //     alert("Some fields need correction:\n" + reason);
+            // } else {
+            //     simpleCart.checkout();
+            // }
+            //return false;
+        }
+        function registerUser(theForm) {
+            if (theForm.password.value != theForm.confirmpassword.value) {
+                return false;
+            }
+
+            var newUser =
+                {
+                    "username": theForm.username.value,
+                    "password": theForm.password.value,
+                    "email": theForm.email.value,
+                    "title": theForm.title.value,
+                    "city": theForm.city.value,
+                    "userType": theForm.usertype.value.toUpperCase()
+                };
+
+            $.ajax({
+                url: "http://localhost:8080/accounts/",
+                type: "POST",
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify(newUser), //Stringified Json Object
+                async: false,    //Cross-domain requests and dataType: "jsonp" requests do not support synchronous operation
+                cache: false,    //This will force requested pages not to be cached by the browser          
+                processData: false, //To avoid making query String instead of JSON
+                success: function (data, textStatus, xhr) {
+                    if (xhr.status === 201) {
+                        return true;
+                    } else {
+                        alert(textStatus);
+                        return false;
+                    }
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>

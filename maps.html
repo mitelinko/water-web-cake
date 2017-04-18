@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Web Water Cake</title>
+    <style>
+        /* Always set the map height explicitly to define the size of the div element that contains the map. */
+        
+        #map {
+            height: 100%;
+        }
+        /* Optional: Makes the sample page fill the window. */
+        
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+</head>
+
+<body>
+    <div id="map"></div>
+    <script>
+        var infoWindows = [];
+        function initMap() {
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 4,
+                center: { lat: 0, lng: 0 }
+            });
+            $.ajax({
+                url: "http://localhost:8080/water-reports",
+                type: "GET",
+                async: false,    //Cross-domain requests and dataType: "jsonp" requests do not support synchronous operation
+                cache: false,    //This will force requested pages not to be cached by the browser          
+                processData: false, //To avoid making query String instead of JSON
+                success: function (resposeJsonObject) {
+                    $.each(resposeJsonObject, function (index) {
+
+                        var infowindow = new google.maps.InfoWindow({
+                            content: '<div id="content">' +
+                            '<div id="siteNotice">' +
+                            '</div>' +
+                            '<h1 id="firstHeading" class="firstHeading">Water Source Report #' + resposeJsonObject[index].id + '</h1>' +
+                            '<div id="bodyContent">' +
+                            '<p>(' + resposeJsonObject[index].latitude + ', ' + resposeJsonObject[index].longitude + ')</p>' +
+                            '<p>' + resposeJsonObject[index].waterType.toLowerCase() + ' ' + resposeJsonObject[index].waterCondition.toLowerCase() + '</p>' +
+                            '</div>' +
+                            '</div>'
+                        });
+
+                        infoWindows.push(infowindow);
+
+                        var marker = new google.maps.Marker({
+                            position: { lat: resposeJsonObject[index].latitude, lng: resposeJsonObject[index].longitude },
+                            map: map,
+                            title: 'Water Source Report'
+                        });
+
+                        marker.addListener('click', function () {
+                            $.each(infoWindows, function (index) {
+                                infoWindows[index].close();
+                            });
+                            infowindow.open(map, marker);
+                        });
+
+                    });
+                }
+            });
+        }
+    </script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB2kZpoRM6ruqLMULaFa6J1_sbbVbubiAQ&callback=initMap">
+
+    </script>
+</body>
+
+</html>
